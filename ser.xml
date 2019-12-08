@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<ArrayOfPublisher xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Publisher>
+    <PublisherID>1</PublisherID>
+    <Name>Publisher 1</Name>
+  </Publisher>
+  <Publisher>
+    <PublisherID>2</PublisherID>
+    <Name>Publisher 2</Name>
+  </Publisher>
+  <Publisher>
+    <PublisherID>3</PublisherID>
+    <Name>Publisher 3</Name>
+  </Publisher>
+  <Publisher>
+    <PublisherID>4</PublisherID>
+    <Name>Publisher 4</Name>
+  </Publisher>
+  <Publisher>
+    <PublisherID>5</PublisherID>
+    <Name>Publisher 5</Name>
+  </Publisher>
+  <Publisher>
+    <PublisherID>6</PublisherID>
+    <Name>Publisher 6</Name>
+  </Publisher>
+  <Publisher>
+    <PublisherID>7</PublisherID>
+    <Name>Publisher 7</Name>
+  </Publisher>
+  <Publisher>
+    <PublisherID>12</PublisherID>
+    <Name>Publisher 12</Name>
+  </Publisher>
+  <Publisher>
+    <PublisherID>15</PublisherID>
+    <Name>@NameParam</Name>
+  </Publisher>
+  <Publisher>
+    <PublisherID>17</PublisherID>
+    <Name>publisher nou</Name>
+  </Publisher>
+</ArrayOfPublisher>
