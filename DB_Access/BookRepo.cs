@@ -13,11 +13,12 @@ namespace DB_Access
     {
         public List<Book> GetTopNBooks(int N)
         {
+            var connection = ConnectionManager.GetConnection();
             List<Book> books = new List<Book>();
             try
             {
                 var querry = $"select top {N} * from [Book]";
-                var connection = ConnectionManager.GetConnection();
+                
                 SqlCommand comand = new SqlCommand(querry, connection);
                 SqlDataReader dataReader = comand.ExecuteReader();
                 while (dataReader.Read())
@@ -28,12 +29,17 @@ namespace DB_Access
                     book.Title = curentRow["Title"].ToString();
                     book.PublisherID = curentRow["PublisherId"] as int? ?? 0;
                     book.Year = curentRow["Year"] as int? ?? 0;
-                    book.Price = curentRow["Decimal"] as decimal? ?? 0;
+                    book.Price = curentRow["Price"] as decimal? ?? default(decimal);
                     books.Add(book);
                 }
+                dataReader.Close();
             }
             catch(SqlException e)
             { Console.WriteLine(e.Message); }
+            finally
+            {
+                connection.Close();
+            }
             return books;
         }
 

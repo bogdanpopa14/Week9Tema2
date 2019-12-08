@@ -36,11 +36,12 @@ namespace DB_Access
 
         public List<Publisher> GetTopNPublisher(int N)
         {
+            var connection = ConnectionManager.GetConnection();
             List<Publisher> publishers = new List<Publisher>();
             try
             {
                 var querry = $"select top {N} * from [Publisher]";
-                var connection = ConnectionManager.GetConnection();
+                
                 SqlCommand comand = new SqlCommand(querry, connection);
                 SqlDataReader dataReader = comand.ExecuteReader();
                 while (dataReader.Read())
@@ -54,7 +55,12 @@ namespace DB_Access
             }
             catch (SqlException e)
             { Console.WriteLine(e.Message); }
+            finally
+            {
+                connection.Close();
+            }
             return publishers;
+            
         }
 
         public List<NumberOfBooksPerPublisher> GetNumberOfBooksPerPublishers()

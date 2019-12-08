@@ -21,6 +21,10 @@ namespace Connection
             }
             return connection;
         }
+        public static void CloseConnection()
+        {
+            connection.Close();
+        }
 
     }
 }
