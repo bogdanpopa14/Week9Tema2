@@ -11,6 +11,7 @@ namespace DB_Access
 {
     public class PublisherRepo
     {
+        SqlConnection connection = ConnectionManager.GetConnection();
 
         public int NrOfRows()
         {
@@ -19,7 +20,7 @@ namespace DB_Access
             try
             {
                 string commandQuery = "select count(PublisherId) from Publisher";
-                var connection = ConnectionManager.GetConnection();
+                //var connection = ConnectionManager.GetConnection();
                 SqlCommand countCommand = new SqlCommand(commandQuery, connection);
                 var count = countCommand.ExecuteScalar();
                 Console.WriteLine(count);
@@ -36,7 +37,7 @@ namespace DB_Access
 
         public List<Publisher> GetTopNPublisher(int N)
         {
-            var connection = ConnectionManager.GetConnection();
+           // var connection = ConnectionManager.GetConnection();
             List<Publisher> publishers = new List<Publisher>();
             try
             {
@@ -55,10 +56,7 @@ namespace DB_Access
             }
             catch (SqlException e)
             { Console.WriteLine(e.Message); }
-            finally
-            {
-                connection.Close();
-            }
+            
             return publishers;
             
         }
@@ -69,7 +67,7 @@ namespace DB_Access
             try
             {
                 var querry = "select [Name] ,(select count(BookId) from Book where Publisher.PublisherId=Book.PublisherId) as Nr from Publisher";
-                var connection = ConnectionManager.GetConnection();
+                //var connection = ConnectionManager.GetConnection();
                 SqlCommand command = new SqlCommand(querry, connection);
 
                 SqlDataReader dataReader = command.ExecuteReader();
@@ -97,7 +95,7 @@ namespace DB_Access
             try
             {
                 var querry = "select [Name] ,(select sum(Price) from Book) as Nr from Publisher where [Name] = @NameParam  ";
-                var connection = ConnectionManager.GetConnection();
+                //var connection = ConnectionManager.GetConnection();
                 SqlCommand comand = new SqlCommand(querry, connection);
                 comand.Parameters.Add(ColumnName);
                 comand.ExecuteNonQuery();

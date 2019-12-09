@@ -11,9 +11,10 @@ namespace DB_Access
 {
     public class BookRepo
     {
+        SqlConnection connection = ConnectionManager.GetConnection();
         public List<Book> GetTopNBooks(int N)
         {
-            var connection = ConnectionManager.GetConnection();
+            //var connection = ConnectionManager.GetConnection();
             List<Book> books = new List<Book>();
             try
             {
@@ -36,10 +37,7 @@ namespace DB_Access
             }
             catch(SqlException e)
             { Console.WriteLine(e.Message); }
-            finally
-            {
-                connection.Close();
-            }
+            
             return books;
         }
 
@@ -51,7 +49,7 @@ namespace DB_Access
             try
             {
                 var querry = "select * from Book where Year=@IdParam ";
-                var connection = ConnectionManager.GetConnection();
+                //var connection = ConnectionManager.GetConnection();
                 SqlCommand command = new SqlCommand(querry, connection);
                 command.Parameters.Add(yearParam);
                 
@@ -82,7 +80,7 @@ namespace DB_Access
             try
             {
                 var querry = "select * from Book where [Year]=(select max([Year]) from Book)";
-                var connection = ConnectionManager.GetConnection();
+                //var connection = ConnectionManager.GetConnection();
                 SqlCommand command = new SqlCommand(querry, connection);
                 
                 SqlDataReader dataReader = command.ExecuteReader();
